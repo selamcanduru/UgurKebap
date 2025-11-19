@@ -1,0 +1,441 @@
+{% extends 'base.html' %}
+
+{% block title %}İletişim - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    .contact-hero {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 4rem 2rem;
+        text-align: center;
+        color: white;
+    }
+
+    .contact-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .contact-info {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .contact-info h2 {
+        color: var(--dark);
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: start;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: var(--bg);
+        border-radius: 15px;
+        transition: all 0.3s;
+    }
+
+    .info-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 5px 15px rgba(230, 57, 70, 0.2);
+    }
+
+    .info-item i {
+        font-size: 2rem;
+        color: var(--primary);
+        min-width: 40px;
+    }
+
+    .info-item-content h3 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .info-item-content p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .info-item-content a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .info-item-content a:hover {
+        color: var(--primary);
+    }
+
+    .contact-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .contact-form h2 {
+        color: var(--dark);
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        color: var(--dark);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    }
+
+    .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+
+    .kvkk-checkbox {
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border: 2px solid #e0e0e0;
+    }
+
+    .kvkk-checkbox input[type="checkbox"] {
+        width: auto;
+        min-width: 20px;
+        height: 20px;
+        margin-top: 3px;
+        cursor: pointer;
+    }
+
+    .kvkk-checkbox label {
+        margin: 0;
+        font-weight: 400;
+        font-size: 0.95rem;
+        color: #4a5568;
+        line-height: 1.6;
+        cursor: pointer;
+    }
+
+    .kvkk-checkbox label a {
+        color: var(--primary);
+        text-decoration: underline;
+        font-weight: 600;
+    }
+
+    .kvkk-checkbox label a:hover {
+        color: var(--secondary);
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(230, 57, 70, 0.3);
+    }
+
+    .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .alert {
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        animation: slideIn 0.5s;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+        border: 2px solid #c3e6cb;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .map-container {
+        margin: 3rem 0;
+        padding: 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        max-width: 1200px;
+        margin: 3rem auto;
+    }
+
+    .map-container h2 {
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .map-embed {
+        width: 100%;
+        height: 450px;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 2px solid #e0e0e0;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-embed iframe {
+        width: 100%;
+        height: 100%;
+        filter: none;
+    }
+
+    .social-connect {
+        text-align: center;
+        margin: 3rem 0;
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+        border-radius: 20px;
+    }
+
+    .social-connect h2 {
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+    }
+
+    .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .social-btn {
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .social-btn.facebook {
+        background: #1877f2;
+    }
+
+    .social-btn.instagram {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    .social-btn.whatsapp {
+        background: #25d366;
+    }
+
+    .social-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+        .contact-hero h1 {
+            font-size: 2rem;
+        }
+
+        .contact-container {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .map-embed {
+            height: 300px;
+        }
+    }
+</style>
+
+<div class="contact-hero">
+    <h1><i class="fas fa-phone-alt"></i> Bize Ulaşın</h1>
+    <p>Sipariş vermek ve bilgi almak için iletişime geçin</p>
+</div>
+
+<div class="container">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>İletişim Bilgileri</h2>
+            
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="info-item-content">
+                    <h3>Adres</h3>
+                    <p>Çay Mahallesi, Atatürk Bulvarı<br>İskenderun / Hatay</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div class="info-item-content">
+                    <h3>Telefon</h3>
+                    <p>
+                        <a href="tel:+905337785131">0533 778 51 31</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div class="info-item-content">
+                    <h3>E-posta</h3>
+                    <p>
+                        <a href="mailto:info@ugurkebap.com">info@ugurkebap.com</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div class="info-item-content">
+                    <h3>Çalışma Saatleri</h3>
+                    <p><strong>Pazartesi - Pazar</strong><br>10:00 - 23:00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Mesaj Gönderin</h2>
+            <form method="post" id="contactForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Adınız *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefon *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-posta</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mesajınız *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <div class="kvkk-checkbox">
+                    <input type="checkbox" id="kvkk_consent" name="kvkk_consent" required>
+                    <label for="kvkk_consent">
+                        <a href="{% url 'kvkk' %}" target="_blank">KVKK ve Gizlilik Politikası</a>'nı okudum, 
+                        kişisel verilerimin işlenmesini kabul ediyorum. *
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Mesajı Gönder
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="social-connect">
+        <h2>Sosyal Medyada Takip Edin</h2>
+        <div class="social-buttons">
+            <a href="https://www.facebook.com/ugur.ates.348483/" target="_blank" class="social-btn facebook">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com/ugurkebapsalonu/" target="_blank" class="social-btn instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://wa.me/905337785131" target="_blank" class="social-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <h2><i class="fas fa-map"></i> Konumumuz</h2>
+        <div class="map-embed">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1596.6083936213233!2d36.220860921782716!3d36.837283801876275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152f3feb77a1d4e1%3A0x81439a3e07a8a7f7!2sU%C4%9Fur%20Kebap%20Lahmacun%20ve%20Pide%20Salonu!5e0!3m2!1str!2str!4v1763445813598!5m2!1str!2str"
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    // KVKK checkbox kontrolü
+    const form = document.getElementById('contactForm');
+    const kvkkCheckbox = document.getElementById('kvkk_consent');
+    const submitBtn = document.getElementById('submitBtn');
+
+    kvkkCheckbox.addEventListener('change', function() {
+        submitBtn.disabled = !this.checked;
+    });
+
+    // Sayfa yüklendiğinde kontrol
+    submitBtn.disabled = !kvkkCheckbox.checked;
+</script>
+
+{% endblock %}

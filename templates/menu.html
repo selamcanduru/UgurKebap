@@ -1,0 +1,331 @@
+{% extends 'base.html' %}
+
+{% block title %}Menü - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    .menu-hero {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 4rem 2rem 2rem;
+        text-align: center;
+        color: white;
+    }
+
+    .menu-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .category-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 2rem;
+        background: white;
+        position: sticky;
+        top: 70px;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .category-btn {
+        padding: 0.8rem 2rem;
+        background: var(--bg);
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 600;
+    }
+
+    .category-btn:hover, .category-btn.active {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+    }
+
+    .menu-section {
+        margin: 3rem 0;
+        padding: 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .menu-section h2 {
+        font-size: 2rem;
+        color: var(--dark);
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .menu-section h2 i {
+        color: var(--primary);
+    }
+
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .menu-item {
+        background: var(--bg);
+        padding: 1.5rem;
+        border-radius: 15px;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+        position: relative;
+    }
+
+    .menu-item:hover {
+        border-color: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(230, 57, 70, 0.2);
+    }
+
+    .menu-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 0.5rem;
+    }
+
+    .menu-item h3 {
+        color: var(--dark);
+        font-size: 1.2rem;
+        flex: 1;
+    }
+
+    .item-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary);
+        background: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+    }
+
+    .menu-item p {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .item-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: var(--green);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .not-available {
+        opacity: 0.6;
+        position: relative;
+    }
+
+    .not-available::after {
+        content: 'Tükendi';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(230, 57, 70, 0.9);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .menu-hero h1 {
+            font-size: 2rem;
+        }
+
+        .category-nav {
+            top: 60px;
+        }
+
+        .menu-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="menu-hero">
+    <h1><i class="fas fa-utensils"></i> Menümüz</h1>
+    <p>Lezzet dolu seçeneklerimiz</p>
+</div>
+
+<div class="category-nav">
+    <button class="category-btn active" onclick="scrollToSection('all')">
+        <i class="fas fa-th"></i> Tümü
+    </button>
+    {% for category in categories %}
+    <button class="category-btn" onclick="scrollToSection('cat-{{ category.id }}')">
+        {% if category.icon %}<i class="{{ category.icon }}"></i>{% endif %}
+        {{ category.name }}
+    </button>
+    {% endfor %}
+</div>
+
+<div class="container">
+    {% for category in categories %}
+    <div class="menu-section" id="cat-{{ category.id }}">
+        <h2>
+            {% if category.icon %}<i class="{{ category.icon }}"></i>{% endif %}
+            {{ category.name }}
+        </h2>
+        <div class="menu-grid">
+            {% for item in category.menuitem_set.all %}
+            <div class="menu-item {% if not item.is_available %}not-available{% endif %}">
+                {% if item.is_popular %}
+                <div class="item-badge">⭐ Popüler</div>
+                {% endif %}
+                <div class="menu-item-header">
+                    <h3>{{ item.name }}</h3>
+                    <div class="item-price">{{ item.price }}₺</div>
+                </div>
+                <p>{{ item.description }}</p>
+            </div>
+            {% empty %}
+            <p>Bu kategoride henüz ürün bulunmamaktadır.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+    <!-- Örnek Menü -->
+    <div class="menu-section">
+        <h2><i class="fas fa-fire"></i> Kebaplar</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-badge">⭐ Popüler</div>
+                <div class="menu-item-header">
+                    <h3>Adana Kebap</h3>
+                    <div class="item-price">120₺</div>
+                </div>
+                <p>Özel baharatlarla marine edilmiş, usta ellerde şişlenmiş acılı kebap. Yanında pilav, salata ve közlenmiş sebzeler.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Urfa Kebap</h3>
+                    <div class="item-price">115₺</div>
+                </div>
+                <p>Geleneksel Urfa usulü, isot biberli acısız kebap. Pilav ve salata ile servis edilir.</p>
+            </div>
+            <div class="menu-item">
+                <div class="item-badge">⭐ Popüler</div>
+                <div class="menu-item-header">
+                    <h3>Karışık Izgara</h3>
+                    <div class="item-price">180₺</div>
+                </div>
+                <p>Adana, Urfa, tavuk şiş, köfte ve kanat. 2 kişilik bolbol porsiyon.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Beyti Sarma</h3>
+                    <div class="item-price">130₺</div>
+                </div>
+                <p>Lavaş ekmeğine sarılı özel kebap, yoğurt ve tereyağı ile servis.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Patlıcan Kebap</h3>
+                    <div class="item-price">140₺</div>
+                </div>
+                <p>Közlenmiş patlıcan üzerine özel kebap, domates sosu ile.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Tavuk Şiş</h3>
+                    <div class="item-price">100₺</div>
+                </div>
+                <p>Marine edilmiş tavuk göğüs şiş, pilav ve salata ile.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2><i class="fas fa-hamburger"></i> Dönerler</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-badge">⭐ Popüler</div>
+                <div class="menu-item-header">
+                    <h3>İskender</h3>
+                    <div class="item-price">110₺</div>
+                </div>
+                <p>Tereyağlı pide üzerine döner, domates sosu ve yoğurt.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Porsiyon Döner</h3>
+                    <div class="item-price">90₺</div>
+                </div>
+                <p>Pilav üzerine döner, yanında salata ve közlenmiş biber.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Dürüm Döner</h3>
+                    <div class="item-price">70₺</div>
+                </div>
+                <p>Lavaş içinde döner, salata, domates, patates ile.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2><i class="fas fa-glass-whiskey"></i> İçecekler</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Ayran</h3>
+                    <div class="item-price">15₺</div>
+                </div>
+                <p>Ev yapımı soğuk ayran</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Şalgam</h3>
+                    <div class="item-price">15₺</div>
+                </div>
+                <p>Acılı veya acısız</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3>Kola / Fanta</h3>
+                    <div class="item-price">20₺</div>
+                </div>
+                <p>Kutu içecekler</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    function scrollToSection(id) {
+        const buttons = document.querySelectorAll('.category-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        if (id !== 'all') {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+</script>
+{% endblock %}

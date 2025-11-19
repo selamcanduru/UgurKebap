@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+{% block title %}KVKK ve Gizlilik Politikası - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    .legal-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .legal-page h1 {
+        color: #E63946;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .legal-page .update-date {
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    .legal-page h2 {
+        color: #2d3748;
+        font-size: 1.8rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #E63946;
+    }
+
+    .legal-page h3 {
+        color: #2d3748;
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .legal-page p {
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        text-align: justify;
+    }
+
+    .legal-page ul {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .legal-page li {
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 0.5rem;
+    }
+
+    .legal-page strong {
+        color: #2d3748;
+        font-weight: 600;
+    }
+
+    .legal-page .highlight-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 5px;
+    }
+
+    .legal-page .contact-box {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-top: 2rem;
+        border: 2px solid #E63946;
+    }
+
+    .legal-page .contact-box h3 {
+        color: #E63946;
+        margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            padding: 2rem 1rem;
+        }
+
+        .legal-page h1 {
+            font-size: 2rem;
+        }
+
+        .legal-page h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="legal-page">
+        <h1>🔒 KVKK ve Gizlilik Politikası</h1>
+        <p class="update-date">Son Güncelleme: 17 Kasım 2025</p>
+
+        <p>
+            Uğur Kebap olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında 
+            kişisel verilerinizin güvenliğine önem veriyoruz. Bu politika, kişisel verilerinizin 
+            nasıl toplandığını, işlendiğini, saklandığını ve korunduğunu açıklamaktadır.
+        </p>
+
+        <h2>1. Veri Sorumlusu</h2>
+        <p>
+            <strong>Veri Sorumlusu:</strong> Uğur Kebap<br>
+            <strong>Adres:</strong> İskenderun, Hatay, Türkiye<br>
+            <strong>E-posta:</strong> info@ugurkebap.com<br>
+            <strong>Telefon:</strong> +90 XXX XXX XX XX
+        </p>
+
+        <h2>2. Toplanan Kişisel Veriler</h2>
+        <p>Web sitemiz ve işletmemiz aracılığıyla aşağıdaki kişisel verileriniz toplanabilir:</p>
+        <ul>
+            <li><strong>Kimlik Bilgileri:</strong> Ad, soyad</li>
+            <li><strong>İletişim Bilgileri:</strong> E-posta adresi, telefon numarası</li>
+            <li><strong>Sipariş Bilgileri:</strong> Sipariş geçmişi, tercihler (varsa)</li>
+            <li><strong>Teknik Veriler:</strong> IP adresi, çerez bilgileri, tarayıcı türü</li>
+            <li><strong>Müşteri İşlem Bilgileri:</strong> Rezervasyon, sipariş detayları</li>
+        </ul>
+
+        <h2>3. Kişisel Verilerin İşlenme Amaçları</h2>
+        <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+        <ul>
+            <li>Sipariş ve rezervasyon işlemlerinin gerçekleştirilmesi</li>
+            <li>Müşteri hizmetlerinin sunulması ve iletişimin sağlanması</li>
+            <li>Yasal yükümlülüklerin yerine getirilmesi</li>
+            <li>Web sitesi performansının iyileştirilmesi</li>
+            <li>Kampanya ve duyuruların iletilmesi (onay vermeniz halinde)</li>
+            <li>Müşteri memnuniyetinin artırılması</li>
+        </ul>
+
+        <h2>4. Kişisel Verilerin Aktarımı</h2>
+        <p>
+            Kişisel verileriniz, KVKK'nın 8. ve 9. maddelerinde belirtilen şartlar dahilinde 
+            ve yasal zorunluluklar nedeniyle aşağıdaki taraflara aktarılabilir:
+        </p>
+        <ul>
+            <li>Yasal merciler ve kamu kurum/kuruluşları (yasal zorunluluk halinde)</li>
+            <li>Ödeme hizmeti sağlayıcıları (online sipariş durumunda)</li>
+            <li>Kargo ve lojistik firmaları (teslimat hizmeti varsa)</li>
+            <li>Bulut depolama ve hosting hizmeti sağlayıcıları</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>⚠️ Önemli Not:</strong> Kişisel verileriniz, hiçbir şekilde üçüncü kişilere 
+            ticari amaçlarla satılmaz, kiralanmaz veya pazarlama amacıyla paylaşılmaz.
+        </div>
+
+        <h2>5. Kişisel Verilerin Saklanması ve Güvenliği</h2>
+        <p>
+            Kişisel verileriniz, KVKK'nın öngördüğü ilkeler ve güvenlik standartları çerçevesinde 
+            saklanmaktadır. Verileriniz:
+        </p>
+        <ul>
+            <li>Şifrelenmiş sunucularda güvenli bir şekilde depolanır</li>
+            <li>Yetkisiz erişime karşı korunur</li>
+            <li>Yasal saklama süreleri boyunca veya işleme amacı ortadan kalkana kadar saklanır</li>
+            <li>Gerekli olmadığı durumlarda silinir, yok edilir veya anonim hale getirilir</li>
+        </ul>
+
+        <h2>6. Çerezler (Cookies)</h2>
+        <p>
+            Web sitemiz, kullanıcı deneyimini iyileştirmek amacıyla çerezler kullanmaktadır. 
+            Çerezler hakkında detaylı bilgi için lütfen <a href="{% url 'cookie_policy' %}">Çerez Politikası</a> sayfamızı inceleyiniz.
+        </p>
+
+        <h2>7. KVKK Kapsamındaki Haklarınız</h2>
+        <p>KVKK'nın 11. maddesi uyarınca, kişisel verilerinizle ilgili olarak aşağıdaki haklara sahipsiniz:</p>
+        <ul>
+            <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+            <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+            <li>İşlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+            <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+            <li>Eksik veya yanlış işlenmiş olması halinde düzeltilmesini isteme</li>
+            <li>Silme veya yok edilmesini talep etme</li>
+            <li>İşlenen verilerin münhasıran otomatik sistemler ile analiz edilmesi nedeniyle 
+                aleyhinize bir sonuç doğması halinde itiraz etme</li>
+            <li>Kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız halinde zararın 
+                giderilmesini talep etme</li>
+        </ul>
+
+        <h2>8. Başvuru Yöntemi</h2>
+        <p>
+            KVKK kapsamındaki haklarınızı kullanmak için aşağıdaki yöntemlerle bize ulaşabilirsiniz:
+        </p>
+
+        <div class="contact-box">
+            <h3>📧 İletişim Bilgileri</h3>
+            <p>
+                <strong>E-posta:</strong> kvkk@ugurkebap.com<br>
+                <strong>Posta Adresi:</strong> Uğur Kebap, İskenderun, Hatay<br>
+                <strong>Telefon:</strong> +90 XXX XXX XX XX
+            </p>
+            <p>
+                Başvurularınız, talebinizin niteliğine göre en geç 30 (otuz) gün içinde 
+                ücretsiz olarak sonuçlandırılacaktır. Ancak, işlemin ayrıca bir maliyeti 
+                gerektirmesi halinde, Kişisel Verileri Koruma Kurulu tarafından belirlenen 
+                tarifedeki ücret alınabilir.
+            </p>
+        </div>
+
+        <h2>9. Politika Değişiklikleri</h2>
+        <p>
+            Bu gizlilik politikası, yasal düzenlemelerdeki değişiklikler veya işletme 
+            gereksinimlerimiz doğrultusunda güncellenebilir. Önemli değişiklikler 
+            yapıldığında, web sitemiz üzerinden bilgilendirme yapılacaktır.
+        </p>
+
+        <h2>10. İletişim</h2>
+        <p>
+            KVKK ve gizlilik politikamız hakkında sorularınız için bizimle iletişime geçebilirsiniz:
+        </p>
+        <p>
+            <strong>E-posta:</strong> info@ugurkebap.com<br>
+            <strong>Telefon:</strong> +90 XXX XXX XX XX<br>
+            <strong>Adres:</strong> İskenderun, Hatay, Türkiye
+        </p>
+
+        <div class="highlight-box">
+            <p><strong>Son Güncelleme:</strong> 17 Kasım 2025</p>
+            <p>Bu politika, Uğur Kebap tarafından hazırlanmış olup, 6698 sayılı Kişisel Verilerin 
+            Korunması Kanunu'na uygun olarak düzenlenmiştir.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

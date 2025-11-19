@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+
+{% block title %}Çerez Politikası - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    .legal-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .legal-page h1 {
+        color: #E63946;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .legal-page .update-date {
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    .legal-page h2 {
+        color: #2d3748;
+        font-size: 1.8rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #E63946;
+    }
+
+    .legal-page h3 {
+        color: #2d3748;
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .legal-page p {
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        text-align: justify;
+    }
+
+    .legal-page ul {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .legal-page li {
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 0.5rem;
+    }
+
+    .legal-page strong {
+        color: #2d3748;
+        font-weight: 600;
+    }
+
+    .legal-page table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .legal-page table th {
+        background: #E63946;
+        color: white;
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .legal-page table td {
+        padding: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .legal-page table tr:hover {
+        background: #f7fafc;
+    }
+
+    .legal-page .info-box {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            padding: 2rem 1rem;
+        }
+
+        .legal-page h1 {
+            font-size: 2rem;
+        }
+
+        .legal-page table {
+            font-size: 0.9rem;
+        }
+
+        .legal-page table th,
+        .legal-page table td {
+            padding: 0.5rem;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="legal-page">
+        <h1>🍪 Çerez Politikası</h1>
+        <p class="update-date">Son Güncelleme: 17 Kasım 2025</p>
+
+        <p>
+            Uğur Kebap olarak, web sitemizde çerezler (cookies) kullanmaktayız. Bu politika, 
+            çerezlerin ne olduğunu, nasıl kullanıldığını ve çerez tercihlerinizi nasıl 
+            yönetebileceğinizi açıklamaktadır.
+        </p>
+
+        <h2>1. Çerez Nedir?</h2>
+        <p>
+            Çerezler, bir web sitesini ziyaret ettiğinizde bilgisayarınıza veya mobil cihazınıza 
+            kaydedilen küçük metin dosyalarıdır. Çerezler, web sitelerinin daha verimli çalışmasını 
+            sağlar ve site sahiplerine bilgi sağlar.
+        </p>
+
+        <div class="info-box">
+            <p><strong>💡 Bilgi:</strong> Çerezler bilgisayarınıza zarar vermez ve virüs içermez. 
+            Çerezler sadece sizin web deneyiminizi iyileştirmek için kullanılır.</p>
+        </div>
+
+        <h2>2. Çerez Türleri</h2>
+        
+        <h3>2.1. Zorunlu Çerezler</h3>
+        <p>
+            Bu çerezler web sitesinin düzgün çalışması için gereklidir ve devre dışı bırakılamazlar. 
+            Genellikle gizlilik tercihleriniz, giriş yapma veya form doldurma gibi işlemlerinize 
+            yanıt olarak ayarlanırlar.
+        </p>
+
+        <h3>2.2. Performans ve Analitik Çerezler</h3>
+        <p>
+            Bu çerezler, web sitemizin nasıl kullanıldığını anlamamıza yardımcı olur. 
+            Hangi sayfaların en çok ziyaret edildiğini ve kullanıcıların sitede nasıl 
+            gezindiğini gösterir.
+        </p>
+
+        <h3>2.3. İşlevsellik Çerezleri</h3>
+        <p>
+            Bu çerezler web sitesinin gelişmiş özelliklerini ve kişiselleştirilmesini sağlar. 
+            Örneğin, dil tercihinizi veya bölgenizi hatırlar.
+        </p>
+
+        <h3>2.4. Hedefleme/Reklam Çerezleri</h3>
+        <p>
+            Bu çerezler, size ve ilgi alanlarınıza daha uygun reklamlar göstermek için kullanılır. 
+            Aynı reklamın sürekli gösterilmesini engellemek ve reklamların etkinliğini ölçmek 
+            için de kullanılırlar.
+        </p>
+
+        <h2>3. Kullandığımız Çerezler</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Çerez Adı</th>
+                    <th>Tür</th>
+                    <th>Amaç</th>
+                    <th>Süre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>session_id</td>
+                    <td>Zorunlu</td>
+                    <td>Oturum yönetimi</td>
+                    <td>Oturum süresi</td>
+                </tr>
+                <tr>
+                    <td>cookie_consent</td>
+                    <td>Zorunlu</td>
+                    <td>Çerez tercihlerini saklar</td>
+                    <td>1 yıl</td>
+                </tr>
+                <tr>
+                    <td>_ga</td>
+                    <td>Analitik</td>
+                    <td>Google Analytics - Ziyaretçi takibi</td>
+                    <td>2 yıl</td>
+                </tr>
+                <tr>
+                    <td>_gid</td>
+                    <td>Analitik</td>
+                    <td>Google Analytics - Oturum takibi</td>
+                    <td>24 saat</td>
+                </tr>
+                <tr>
+                    <td>language_pref</td>
+                    <td>İşlevsellik</td>
+                    <td>Dil tercihini hatırlar</td>
+                    <td>1 yıl</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Çerezleri Nasıl Kontrol Edebilirsiniz?</h2>
+        <p>
+            Çerez tercihlerinizi aşağıdaki yöntemlerle yönetebilirsiniz:
+        </p>
+
+        <h3>4.1. Web Sitemiz Üzerinden</h3>
+        <p>
+            Web sitemizin altındaki çerez ayarları bağlantısından tercihlerinizi 
+            değiştirebilirsiniz. İlk ziyaretinizde görünen çerez bildiriminden de 
+            tercihlerinizi ayarlayabilirsiniz.
+        </p>
+
+        <h3>4.2. Tarayıcı Ayarları</h3>
+        <p>
+            Çoğu web tarayıcısı, çerezleri otomatik olarak kabul edecek şekilde ayarlanmıştır. 
+            Ancak tarayıcı ayarlarınızdan çerezleri engelleyebilir veya silebilirsiniz:
+        </p>
+        <ul>
+            <li><strong>Chrome:</strong> Ayarlar → Gizlilik ve güvenlik → Çerezler</li>
+            <li><strong>Firefox:</strong> Ayarlar → Gizlilik ve Güvenlik → Çerezler</li>
+            <li><strong>Safari:</strong> Tercihler → Gizlilik → Çerezler</li>
+            <li><strong>Edge:</strong> Ayarlar → Çerezler ve site izinleri</li>
+        </ul>
+
+        <div class="info-box">
+            <p><strong>⚠️ Önemli:</strong> Çerezleri tamamen engellerseniz, web sitemizin 
+            bazı özellikleri düzgün çalışmayabilir.</p>
+        </div>
+
+        <h2>5. Üçüncü Taraf Çerezler</h2>
+        <p>
+            Web sitemizde kullanılan bazı çerezler, üçüncü taraf hizmet sağlayıcılar 
+            tarafından yerleştirilir:
+        </p>
+        <ul>
+            <li><strong>Google Analytics:</strong> Web sitesi trafiğini ve kullanıcı 
+                davranışını analiz etmek için</li>
+            <li><strong>Google Maps:</strong> Konum hizmetleri sağlamak için</li>
+            <li><strong>Social Media Plugins:</strong> Sosyal medya paylaşım özellikleri için</li>
+        </ul>
+
+        <h2>6. Çerez Politikası Güncellemeleri</h2>
+        <p>
+            Bu çerez politikası, yasal düzenlemeler veya hizmetlerimizdeki değişiklikler 
+            nedeniyle güncellenebilir. Önemli değişiklikler yapıldığında, web sitemiz 
+            üzerinden bilgilendirileceksiniz.
+        </p>
+
+        <h2>7. İletişim</h2>
+        <p>
+            Çerez politikamız hakkında sorularınız için bizimle iletişime geçebilirsiniz:
+        </p>
+        <p>
+            <strong>E-posta:</strong> info@ugurkebap.com<br>
+            <strong>Telefon:</strong> +90 XXX XXX XX XX<br>
+            <strong>Adres:</strong> İskenderun, Hatay, Türkiye
+        </p>
+
+        <h2>8. Yararlı Bağlantılar</h2>
+        <ul>
+            <li><a href="https://www.aboutcookies.org/" target="_blank">About Cookies</a> - 
+                Çerezler hakkında genel bilgi</li>
+            <li><a href="https://www.allaboutcookies.org/" target="_blank">All About Cookies</a> - 
+                Çerezleri yönetme rehberi</li>
+            <li><a href="{% url 'kvkk' %}">KVKK ve Gizlilik Politikası</a> - 
+                Kişisel verileriniz hakkında</li>
+        </ul>
+
+        <div class="info-box">
+            <p><strong>Son Güncelleme:</strong> 17 Kasım 2025</p>
+            <p>Bu politika, Uğur Kebap tarafından hazırlanmış olup, yasal düzenlemelere 
+            uygun olarak güncellenmiştir.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

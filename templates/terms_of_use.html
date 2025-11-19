@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+
+{% block title %}Kullanım Koşulları - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    .legal-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .legal-page h1 {
+        color: #E63946;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .legal-page .update-date {
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    .legal-page h2 {
+        color: #2d3748;
+        font-size: 1.8rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #E63946;
+    }
+
+    .legal-page h3 {
+        color: #2d3748;
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .legal-page p {
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        text-align: justify;
+    }
+
+    .legal-page ul {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .legal-page li {
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 0.5rem;
+    }
+
+    .legal-page strong {
+        color: #2d3748;
+        font-weight: 600;
+    }
+
+    .legal-page .warning-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            padding: 2rem 1rem;
+        }
+
+        .legal-page h1 {
+            font-size: 2rem;
+        }
+
+        .legal-page h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="legal-page">
+        <h1>📜 Kullanım Koşulları</h1>
+        <p class="update-date">Son Güncelleme: 17 Kasım 2025</p>
+
+        <p>
+            Uğur Kebap web sitesine hoş geldiniz. Bu web sitesini kullanarak, aşağıdaki 
+            kullanım koşullarını kabul etmiş sayılırsınız. Lütfen bu koşulları dikkatlice okuyunuz.
+        </p>
+
+        <h2>1. Genel Hükümler</h2>
+        <p>
+            Bu web sitesi Uğur Kebap tarafından işletilmektedir. Sitemizi ziyaret ederek 
+            veya kullanarak, bu kullanım koşullarına uymayı kabul etmiş olursunuz.
+        </p>
+
+        <h2>2. Hizmetlerimiz</h2>
+        <p>
+            Web sitemiz aracılığıyla aşağıdaki hizmetleri sunmaktayız:
+        </p>
+        <ul>
+            <li>Menü bilgilerinin görüntülenmesi</li>
+            <li>İletişim ve rezervasyon imkanı</li>
+            <li>Online sipariş hizmeti (varsa)</li>
+            <li>Galeri ve restoranımız hakkında bilgilendirme</li>
+            <li>Kampanya ve duyuruların paylaşılması</li>
+        </ul>
+
+        <h2>3. Kullanıcı Sorumlulukları</h2>
+        <p>
+            Web sitemizi kullanırken aşağıdaki kurallara uymayı taahhüt edersiniz:
+        </p>
+        <ul>
+            <li>Doğru ve güncel bilgiler sağlamak</li>
+            <li>Yasalara aykırı içerik paylaşmamak</li>
+            <li>Diğer kullanıcıların haklarına saygı göstermek</li>
+            <li>Web sitesinin güvenliğini tehlikeye atacak eylemlerden kaçınmak</li>
+            <li>Spam, virüs veya zararlı yazılım içeren içerik göndermemek</li>
+            <li>Başkalarının kişisel bilgilerini izinsiz kullanmamak</li>
+        </ul>
+
+        <h2>4. Fikri Mülkiyet Hakları</h2>
+        <p>
+            Bu web sitesindeki tüm içerik (metin, görsel, logo, tasarım, vb.) Uğur Kebap'ın 
+            mülkiyetindedir ve telif hakkı yasaları ile korunmaktadır.
+        </p>
+        <ul>
+            <li>Web sitesindeki içeriklerin izinsiz kopyalanması yasaktır</li>
+            <li>Ticari amaçlarla kullanımı için yazılı izin gereklidir</li>
+            <li>Logo ve marka kullanımı için önceden onay alınmalıdır</li>
+        </ul>
+
+        <h2>5. Sipariş ve Rezervasyon Koşulları</h2>
+        
+        <h3>5.1. Sipariş İşlemleri</h3>
+        <p>
+            Online sipariş hizmeti kullanılırken:
+        </p>
+        <ul>
+            <li>Tüm bilgilerin doğru ve eksiksiz girilmesi gerekmektedir</li>
+            <li>Sipariş onayı e-posta veya SMS ile gönderilir</li>
+            <li>Ödeme, belirtilen yöntemlerle güvenli şekilde alınır</li>
+            <li>Teslimat süreleri tahminidir ve trafik, hava koşulları gibi faktörlerden etkilenebilir</li>
+        </ul>
+
+        <h3>5.2. İptal ve İade</h3>
+        <p>
+            Sipariş iptali ve iade koşulları:
+        </p>
+        <ul>
+            <li>Hazırlanmaya başlanmadan önce sipariş iptal edilebilir</li>
+            <li>Ürün tesliminden sonra iade kabul edilmez (gıda güvenliği nedeniyle)</li>
+            <li>Hatalı teslimat durumunda, teslimat anında bildirim yapılmalıdır</li>
+            <li>İade talebi için +90 XXX XXX XX XX numaralı telefonu arayabilirsiniz</li>
+        </ul>
+
+        <h2>6. Fiyatlar ve Ödeme</h2>
+        <ul>
+            <li>Web sitesinde görünen fiyatlar Türk Lirası (TL) cinsindendir</li>
+            <li>KDV dahil fiyatlar gösterilmektedir</li>
+            <li>Fiyatlar önceden haber verilmeksizin değiştirilebilir</li>
+            <li>Ödeme, nakit, kredi kartı veya online ödeme yöntemleri ile yapılabilir</li>
+            <li>Online ödemeler için güvenli ödeme sistemleri kullanılmaktadır</li>
+        </ul>
+
+        <h2>7. Gizlilik ve Kişisel Veriler</h2>
+        <p>
+            Kişisel verileriniz, <a href="{% url 'kvkk' %}">KVKK ve Gizlilik Politikası</a> 
+            kapsamında işlenmekte ve korunmaktadır. Web sitemizi kullanarak, kişisel 
+            verilerinizin bu politika çerçevesinde işlenmesini kabul etmiş olursunuz.
+        </p>
+
+        <h2>8. Sorumluluk Sınırlamaları</h2>
+        <p>
+            Uğur Kebap, aşağıdaki durumlardan sorumlu değildir:
+        </p>
+        <ul>
+            <li>Web sitesine erişimde yaşanabilecek teknik sorunlar</li>
+            <li>Üçüncü taraf web sitelerinin içeriği</li>
+            <li>Kullanıcıların yanlış bilgi vermesinden kaynaklanan sorunlar</li>
+            <li>Mücbir sebepler (doğal afet, salgın, vb.) nedeniyle hizmet aksamaları</li>
+            <li>Kullanıcıların cihazlarında oluşabilecek güvenlik açıkları</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>⚠️ Önemli Uyarı:</strong> Gıda alerjiniz varsa, sipariş öncesinde 
+            mutlaka personelimizi bilgilendiriniz. Menümüzde yer alan ürünlerin içerik 
+            bilgilerini öğrenmek için bizimle iletişime geçebilirsiniz.
+        </div>
+
+        <h2>9. Hesap Güvenliği</h2>
+        <p>
+            Eğer sitemizde hesap oluşturduysanız:
+        </p>
+        <ul>
+            <li>Şifrenizi gizli tutmak sizin sorumluluğunuzdadır</li>
+            <li>Hesabınızda gerçekleşen tüm işlemlerden siz sorumlusunuz</li>
+            <li>Şüpheli aktivite fark ederseniz hemen bize bildirin</li>
+            <li>Başkasının hesabını kullanmak yasaktır</li>
+        </ul>
+
+        <h2>10. Değişiklikler ve Güncellemeler</h2>
+        <p>
+            Uğur Kebap, bu kullanım koşullarını önceden haber vermeksizin değiştirme 
+            hakkını saklı tutar. Değişiklikler bu sayfada yayınlandığı anda yürürlüğe girer. 
+            Web sitesini kullanmaya devam ederek, güncel koşulları kabul etmiş sayılırsınız.
+        </p>
+
+        <h2>11. Uygulanacak Hukuk ve Yetki</h2>
+        <p>
+            Bu kullanım koşulları, Türkiye Cumhuriyeti yasalarına tabidir. 
+            Bu koşullardan doğabilecek uyuşmazlıkların çözümünde Hatay mahkemeleri 
+            ve icra daireleri yetkilidir.
+        </p>
+
+        <h2>12. İletişim</h2>
+        <p>
+            Kullanım koşulları hakkında sorularınız için:
+        </p>
+        <p>
+            <strong>Uğur Kebap</strong><br>
+            <strong>Adres:</strong> İskenderun, Hatay, Türkiye<br>
+            <strong>E-posta:</strong> info@ugurkebap.com<br>
+            <strong>Telefon:</strong> +90 XXX XXX XX XX
+        </p>
+
+        <h2>13. Kabul Beyanı</h2>
+        <p>
+            Web sitemizi kullanarak, bu kullanım koşullarını okuduğunuzu, anladığınızı 
+            ve kabul ettiğinizi beyan etmiş olursunuz.
+        </p>
+
+        <div class="warning-box">
+            <p><strong>Son Güncelleme:</strong> 17 Kasım 2025</p>
+            <p>Bu kullanım koşulları, Uğur Kebap tarafından hazırlanmış olup, yasal 
+            düzenlemelere uygun olarak güncellenmiştir.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

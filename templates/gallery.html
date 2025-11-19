@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+
+{% block title %}Galeri - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    .gallery-hero {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 4rem 2rem;
+        text-align: center;
+        color: white;
+    }
+
+    .gallery-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 3rem 2rem;
+    }
+
+    .gallery-item {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .gallery-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: white;
+    }
+
+    .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        padding: 1.5rem;
+        color: white;
+        transform: translateY(100%);
+        transition: transform 0.3s;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+    }
+
+    .gallery-overlay h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.95);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lightbox.active {
+        display: flex;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 10px;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 3rem;
+        color: white;
+        cursor: pointer;
+        z-index: 10001;
+        background: rgba(230, 57, 70, 0.8);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .lightbox-close:hover {
+        background: var(--primary);
+        transform: rotate(90deg);
+    }
+
+    .category-filter {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 2rem;
+        background: white;
+        margin: 0 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .filter-btn {
+        padding: 0.8rem 2rem;
+        background: var(--bg);
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 600;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .gallery-hero h1 {
+            font-size: 2rem;
+        }
+
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="gallery-hero">
+    <h1><i class="fas fa-images"></i> Galeri</h1>
+    <p>Lezzetlerimizden kareler</p>
+</div>
+
+<div class="container">
+    <div class="category-filter">
+        <button class="filter-btn active" onclick="filterGallery('all')">
+            <i class="fas fa-th"></i> Tümü
+        </button>
+        <button class="filter-btn" onclick="filterGallery('kebap')">
+            <i class="fas fa-fire"></i> Kebaplar
+        </button>
+        <button class="filter-btn" onclick="filterGallery('doner')">
+            <i class="fas fa-hamburger"></i> Dönerler
+        </button>
+        <button class="filter-btn" onclick="filterGallery('mekan')">
+            <i class="fas fa-store"></i> Mekan
+        </button>
+    </div>
+
+    <div class="gallery-grid">
+        {% for image in images %}
+        <div class="gallery-item" data-category="kebap" onclick="openLightbox('{{ image.image.url }}', '{{ image.title }}')">
+            {% if image.image %}
+                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+            {% else %}
+                <div class="gallery-placeholder">
+                    <i class="fas fa-utensils"></i>
+                </div>
+            {% endif %}
+            <div class="gallery-overlay">
+                <h3>{{ image.title }}</h3>
+            </div>
+        </div>
+        {% empty %}
+        <!-- Örnek galeri öğeleri -->
+        <div class="gallery-item" data-category="kebap" onclick="openLightbox('', 'Adana Kebap')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-fire"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>Adana Kebap</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="kebap" onclick="openLightbox('', 'Urfa Kebap')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-pepper-hot"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>Urfa Kebap</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="kebap" onclick="openLightbox('', 'Karışık Izgara')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-drumstick-bite"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>Karışık Izgara</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="doner" onclick="openLightbox('', 'İskender')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-hamburger"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>İskender</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="doner" onclick="openLightbox('', 'Porsiyon Döner')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>Porsiyon Döner</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="kebap" onclick="openLightbox('', 'Beyti Sarma')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-fire-alt"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>Beyti Sarma</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="mekan" onclick="openLightbox('', 'Mekanımızdan')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-store"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>Mekanımızdan</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="mekan" onclick="openLightbox('', 'İçeride')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-chair"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>İçeride</h3>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="kebap" onclick="openLightbox('', 'Patlıcan Kebap')">
+            <div class="gallery-placeholder">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div class="gallery-overlay">
+                <h3>Patlıcan Kebap</h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-close">×</div>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</div>
+
+<script>
+    function filterGallery(category) {
+        const items = document.querySelectorAll('.gallery-item');
+        const buttons = document.querySelectorAll('.filter-btn');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function openLightbox(src, title) {
+        const lightbox = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        
+        if (src) {
+            img.src = src;
+            img.alt = title;
+            lightbox.classList.add('active');
+        }
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+    }
+
+    // ESC tuşu ile lightbox kapatma
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+</script>
+
+{% endblock %}

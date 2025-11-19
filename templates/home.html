@@ -1,0 +1,490 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ana Sayfa - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    /* ========================================
+       MODERN HERO SECTION WITH BLUR BACKGROUND
+       ======================================== */
+    .hero {
+        position: relative;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    }
+
+    /* Hero Background Image */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=1600&q=80');
+        background-size: cover;
+        background-position: center;
+        filter: blur(3px);
+        z-index: 1;
+    }
+
+    /* Dark Overlay */
+    .hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+
+    /* Hero Content */
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        padding: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: white;
+        margin: 0 auto 1.5rem auto;
+        text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+        line-height: 1.2;
+        white-space: nowrap;
+        text-align: center;
+        display: block;
+    }
+
+    .hero h1 .fire-emoji {
+        display: inline-block;
+        animation: flicker 2s infinite;
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.95);
+        margin: 0 auto 2.5rem auto;
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+        font-weight: 300;
+        text-align: center;
+        display: block;
+    }
+
+    /* CTA Button */
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.25rem 3rem;
+        background: #FFD700;
+        color: #2d3748;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+        background: #FFC700;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5);
+        color: #1a202c;
+    }
+
+    /* ========================================
+       FEATURES SECTION
+       ======================================== */
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 4rem 0;
+        margin-top: -80px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .feature-card {
+        background: white;
+        padding: 2.5rem 1.5rem;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card i {
+        font-size: 3rem;
+        color: #E63946;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .feature-card p {
+        color: #718096;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* ========================================
+       SECTION TITLE
+       ======================================== */
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #2d3748;
+        margin: 4rem 0 3rem 0;
+        position: relative;
+        font-weight: 800;
+    }
+
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #E63946, #FF6B35);
+        margin: 1rem auto;
+        border-radius: 2px;
+    }
+
+    /* ========================================
+       POPULAR ITEMS / MENU CARDS
+       ======================================== */
+    .popular-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
+    .menu-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .menu-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+    }
+
+    .menu-card-img {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #E63946 0%, #FF6B35 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: white;
+    }
+
+    .menu-card-content {
+        padding: 1.5rem;
+    }
+
+    .menu-card h3 {
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .menu-card p {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+    .price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #E63946;
+    }
+
+    .popular-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #FFD700;
+        color: #2d3748;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 5;
+    }
+
+    /* ========================================
+       GALLERY SECTION
+       ======================================== */
+    .gallery-preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 2rem 0 4rem 0;
+    }
+
+    .gallery-item {
+        aspect-ratio: 1;
+        background: linear-gradient(135deg, #E63946 0%, #FF6B35 100%);
+        border-radius: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* ========================================
+       ANIMATIONS
+       ======================================== */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes flicker {
+        0%, 100% { 
+            transform: scale(1); 
+            filter: brightness(1);
+        }
+        50% { 
+            transform: scale(1.1); 
+            filter: brightness(1.2);
+        }
+    }
+
+    /* ========================================
+       RESPONSIVE DESIGN
+       ======================================== */
+    @media (max-width: 768px) {
+        .hero {
+            min-height: 500px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            white-space: normal; /* Mobilde alt satıra geçebilsin */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .features {
+            margin-top: -60px;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin: 3rem 0 2rem 0;
+        }
+
+        .popular-items {
+            grid-template-columns: 1fr;
+        }
+
+        .gallery-preview {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 2rem;
+            white-space: normal; /* Mobilde alt satıra geçebilsin */
+        }
+
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            font-size: 1rem;
+            padding: 0.9rem 1.8rem;
+        }
+    }
+</style>
+
+<!-- Modern Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>
+            <span class="fire-emoji">🔥</span> 
+            Uğur Kebap'a Hoş Geldiniz!
+            <span class="fire-emoji">🔥</span>
+        </h1>
+        <p>Geleneksel lezzetler, modern sunum. Her lokmada kalite!</p>
+        <a href="{% url 'menu' %}" class="cta-button">
+            <i class="fas fa-utensils"></i> Menüyü İncele
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Features Section -->
+    <div class="features">
+        <div class="feature-card">
+            <i class="fas fa-fire-alt"></i>
+            <h3>Taze Malzeme</h3>
+            <p>Günlük taze malzemelerle hazırlanan lezzetler</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-clock"></i>
+            <h3>Hızlı Servis</h3>
+            <p>Siparişiniz kısa sürede hazır</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-star"></i>
+            <h3>Geleneksel Lezzet</h3>
+            <p>Yılların tecrübesiyle usta ellerde</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-thumbs-up"></i>
+            <h3>Müşteri Memnuniyeti</h3>
+            <p>%100 müşteri memnuniyeti garantisi</p>
+        </div>
+    </div>
+
+    <!-- Popular Items Section -->
+    <h2 class="section-title">Popüler Lezzetler</h2>
+    <div class="popular-items">
+        {% for item in popular_items %}
+        <div class="menu-card">
+            <div class="popular-badge">⭐ Popüler</div>
+            <div class="menu-card-img">
+                <i class="fas fa-drumstick-bite"></i>
+            </div>
+            <div class="menu-card-content">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description|truncatewords:10 }}</p>
+                <div class="price">{{ item.price }}₺</div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="menu-card">
+            <div class="popular-badge">⭐ Popüler</div>
+            <div class="menu-card-img">
+                <i class="fas fa-drumstick-bite"></i>
+            </div>
+            <div class="menu-card-content">
+                <h3>Adana Kebap</h3>
+                <p>Özel baharatlarla marine edilmiş acılı kebap</p>
+                <div class="price">120₺</div>
+            </div>
+        </div>
+        <div class="menu-card">
+            <div class="menu-card-img">
+                <i class="fas fa-pepper-hot"></i>
+            </div>
+            <div class="menu-card-content">
+                <h3>Urfa Kebap</h3>
+                <p>Geleneksel Urfa usulü kebap</p>
+                <div class="price">115₺</div>
+            </div>
+        </div>
+        <div class="menu-card">
+            <div class="menu-card-img">
+                <i class="fas fa-fire"></i>
+            </div>
+            <div class="menu-card-content">
+                <h3>Karışık Izgara</h3>
+                <p>Şiş, köfte, tavuk, kanat bir arada</p>
+                <div class="price">180₺</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Gallery Section -->
+    <h2 class="section-title">Galeri</h2>
+    <div class="gallery-preview">
+        {% for image in gallery_images %}
+        <div class="gallery-item">
+            {% if image.image %}
+                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+            {% else %}
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
+                    <i class="fas fa-utensils"></i>
+                </div>
+            {% endif %}
+        </div>
+        {% empty %}
+        <div class="gallery-item">
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
+                <i class="fas fa-fire"></i>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
+                <i class="fas fa-utensils"></i>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
+                <i class="fas fa-pepper-hot"></i>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

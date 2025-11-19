@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+
+{% block title %}Hakkımızda - Uğur Kebap{% endblock %}
+
+{% block content %}
+<style>
+    .about-hero {
+        background: linear-gradient(135deg, rgba(230, 57, 70, 0.95) 0%, rgba(255, 107, 53, 0.95) 100%);
+        color: white;
+        text-align: center;
+        padding: 4rem 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .about-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-hero p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .about-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .about-section {
+        background: white;
+        padding: 3rem;
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .about-section h2 {
+        color: #E63946;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .about-section p {
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        text-align: justify;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .value-card {
+        background: #f8f9fa;
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(230, 57, 70, 0.15);
+    }
+
+    .value-card i {
+        font-size: 3rem;
+        color: #E63946;
+        margin-bottom: 1rem;
+    }
+
+    .value-card h3 {
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .value-card p {
+        color: #666;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .timeline {
+        position: relative;
+        padding: 2rem 0;
+    }
+
+    .timeline-item {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .timeline-year {
+        min-width: 100px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #E63946;
+    }
+
+    .timeline-content {
+        flex: 1;
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid #E63946;
+    }
+
+    .timeline-content h3 {
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-content p {
+        color: #666;
+        margin: 0;
+    }
+
+    .team-section {
+        background: #f8f9fa;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .team-section h2 {
+        color: #E63946;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .team-member {
+        background: white;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+
+    .team-member-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #E63946, #FF6B35);
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+    }
+
+    .team-member h3 {
+        color: #2d3748;
+        margin-bottom: 0.3rem;
+    }
+
+    .team-member p {
+        color: #666;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .contact-cta {
+        background: linear-gradient(135deg, #E63946, #FF6B35);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .contact-cta h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-cta p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 3rem;
+        background: white;
+        color: #E63946;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 700;
+        transition: all 0.3s;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .about-hero h1 {
+            font-size: 2rem;
+        }
+
+        .about-hero p {
+            font-size: 1.1rem;
+        }
+
+        .about-section {
+            padding: 2rem 1.5rem;
+        }
+
+        .timeline-item {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .timeline-year {
+            min-width: auto;
+        }
+    }
+</style>
+
+<div class="about-hero">
+    <h1>🍖 Hakkımızda</h1>
+    <p>
+        Lezzet ve kalite tutkusuyla, geleneksel Türk mutfağının en özel 
+        tatlarını modern dokunuşlarla sunuyoruz
+    </p>
+</div>
+
+<div class="about-content">
+    <div class="about-section">
+        <h2>📖 Hikayemiz</h2>
+        <p>
+            Uğur Kebap, yılların deneyimi ve lezzet tutkusuyla 20XX yılında İskenderun'da 
+            kurulmuştur. Geleneksel Türk mutfağının en özel lezzetlerini, özenle seçilmiş 
+            malzemeler ve usta ellerle hazırlayarak sofralarınıza taşımaktayız.
+        </p>
+        <p>
+            Her lokmada kaliteyi, tazeliği ve özgünlüğü ön planda tutan işletmemiz, 
+            müşteri memnuniyetini her şeyin üzerinde tutmaktadır. Ailenizle birlikte 
+            keyifli anlar geçirebileceğiniz sıcak ve samimi bir ortam sunuyoruz.
+        </p>
+    </div>
+
+    <div class="about-section">
+        <h2>🎯 Değerlerimiz</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Taze Malzeme</h3>
+                <p>Günlük taze ve kaliteli malzemelerle hazırlanmış lezzetler</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-heart"></i>
+                <h3>Müşteri Odaklı</h3>
+                <p>%100 müşteri memnuniyeti ve kaliteli hizmet anlayışı</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Hijyen ve Kalite</h3>
+                <p>En üst düzey hijyen standartları ve kalite kontrol</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-users"></i>
+                <h3>Aile Ortamı</h3>
+                <p>Sıcak ve samimi bir atmosferde keyifli yemek deneyimi</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h2>🏆 Yolculuğumuz</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-content">
+                    <h3>Kuruluş</h3>
+                    <p>Dörtyol'da büyük bir dükkan olarak sınırlı sayıda menü ile başladık</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-content">
+                    <h3>Genişleme</h3>
+                    <p>Artan talep üzerine menümüzü genişlettik</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">20XX</div>
+                <div class="timeline-content">
+                    <h3>Online Hizmet</h3>
+                    <p>Online sipariş sistemiyle daha geniş kitlelere ulaştık</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <h3>Günümüz</h3>
+                    <p>Bölgenin en sevilen kebap restoranı olduk</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <h2>👨‍🍳 Ekibimiz</h2>
+        <p style="color: #666; max-width: 600px; margin: 0 auto 2rem;">
+            Deneyimli ve tutkulu ekibimiz, size en iyi hizmeti sunmak için çalışıyor
+        </p>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member-icon">👨‍🍳</div>
+                <h3>Uğur Ateş</h3>
+                <p>Kurucu & Başşef</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-icon">👨‍💼</div>
+                <h3>Ekip Lideri</h3>
+                <p>Operasyon Müdürü</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-icon">👨‍🍳</div>
+                <h3>Usta Ekibi</h3>
+                <p>Mutfak Şefleri</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-icon">🙋</div>
+                <h3>Servis Ekibi</h3>
+                <p>Müşteri Hizmetleri</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-cta">
+        <h2>Bizi Ziyaret Edin!</h2>
+        <p>
+            Lezzetli kebaplarımızı tatmak ve sıcak atmosferimizi deneyimlemek için 
+            restoranımıza bekleriz
+        </p>
+        <a href="{% url 'contact' %}" class="cta-button">
+            <i class="fas fa-map-marker-alt"></i> İletişime Geç
+        </a>
+    </div>
+</div>
+{% endblock %}
